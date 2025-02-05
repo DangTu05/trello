@@ -18,6 +18,7 @@ export default tseslint.config(
       "react-refresh": reactRefresh,
     },
     rules: {
+      /// React
       ...reactHooks.configs.recommended.rules,
       "react-refresh/only-export-components": [
         "warn",
@@ -27,7 +28,14 @@ export default tseslint.config(
       "react-hooks/exhaustive-deps": "warn",
       "react/prop-types": 0,
       "react/display-name": 0,
-
+      /// Mui
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: ["@mui/*/*/*"],
+        },
+      ],
+      ///Common
       "no-console": 1,
       "no-lonely-if": 1,
       "no-unused-vars": 1,
@@ -50,4 +58,3 @@ export default tseslint.config(
   }
 );
 /// Đọc tài liệu ở đây https://eslint.org/docs/latest/
-
