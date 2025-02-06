@@ -1,0 +1,37 @@
+/*  
+Tài liệu eslint:https://eslint.org/docs/latest/ 
+*/
+/* css baseline hỗ trợ css trên tất cả trình duyệt*/
+
+/* disableGutters là một thuộc tính (prop) được sử dụng trong một số thành phần của Material-UI, chẳng hạn như Container, AppBar, và List. Thuộc tính này được sử dụng để loại bỏ khoảng cách (gutter) mặc định của thành phần, giúp thành phần chiếm toàn bộ chiều rộng của vùng chứa mà không có khoảng cách bên trong*/
+/*Tác dụng của tsconfig.node.json:
+tsBuildInfoFile: Định nghĩa vị trí lưu trữ thông tin xây dựng (build info) của TypeScript. Điều này giúp tăng tốc quá trình biên dịch lại.
+target: Định nghĩa phiên bản ECMAScript mà mã nguồn sẽ được biên dịch thành. Ở đây là ES2022.
+lib: Định nghĩa các thư viện mà TypeScript sẽ sử dụng. Ở đây là ES2023.
+module: Định nghĩa hệ thống module mà TypeScript sẽ sử dụng. Ở đây là ESNext.
+skipLibCheck: Bỏ qua kiểm tra kiểu trong các tệp khai báo thư viện (.d.ts).
+moduleResolution: Định nghĩa cách TypeScript sẽ giải quyết các module. Ở đây là bundler.
+allowImportingTsExtensions: Cho phép nhập các tệp TypeScript với phần mở rộng .ts.
+isolatedModules: Đảm bảo rằng mỗi tệp được xử lý như một module riêng biệt.
+moduleDetection: Định nghĩa cách TypeScript phát hiện các module. Ở đây là force.
+strict: Bật chế độ kiểm tra nghiêm ngặt của TypeScript.
+noUnusedLocals: Báo lỗi khi có biến cục bộ không được sử dụng.
+noUnusedParameters: Báo lỗi khi có tham số không được sử dụng.
+noFallthroughCasesInSwitch: Báo lỗi khi có trường hợp switch không có break.
+noUncheckedSideEffectImports: Báo lỗi khi có nhập khẩu có tác dụng phụ không được kiểm tra.
+composite: Định nghĩa rằng dự án này là một dự án composite, cho phép sử dụng các tham chiếu dự án.*/
+/*lib: Sử dụng các thư viện ECMAScript 2020 và các API của trình duyệt.
+module: Sử dụng hệ thống module mới nhất của ECMAScript.
+skipLibCheck: Bỏ qua kiểm tra kiểu trong các tệp khai báo thư viện.
+moduleResolution: Giải quyết các module theo cách của các công cụ bundler.
+allowImportingTsExtensions: Cho phép nhập các tệp TypeScript với phần mở rộng .ts.
+isolatedModules: Đảm bảo rằng mỗi tệp được xử lý như một module riêng biệt.
+moduleDetection: Buộc TypeScript coi tất cả các tệp là module.
+jsx: Xử lý các tệp JSX theo cách của React.
+strict: Bật chế độ kiểm tra nghiêm ngặt của TypeScript.
+noUnusedLocals: Báo lỗi khi có biến cục bộ không được sử dụng.
+noUnusedParameters: Báo lỗi khi có tham số không được sử dụng.
+noFallthroughCasesInSwitch: Báo lỗi khi có trường hợp switch không có break.
+noUncheckedSideEffectImports: Báo lỗi khi có nhập khẩu có tác dụng phụ không được kiểm tra.
+composite: Định nghĩa rằng dự án này là một dự án composite.
+emitDeclarationOnly: Chỉ tạo ra các tệp khai báo mà không phát sinh các tệp JavaScript.*/

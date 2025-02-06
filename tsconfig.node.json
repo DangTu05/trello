@@ -11,7 +11,7 @@
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
-    "noEmit": true,
+    // "noEmit": true,
 
     /* Linting */
     "strict": true,
@@ -20,6 +20,10 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     // "forceConsistentCasingInFileNames": true
+    /* Project References */
+    "composite": true, // Thêm dòng này
+    /* Emit options */
+    "emitDeclarationOnly": true // Thêm dòng này
   },
   "include": ["vite.config.ts"]
 }
