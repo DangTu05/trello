@@ -3,19 +3,22 @@ import { red } from "@mui/material/colors";
 
 // A custom theme for this app
 const theme = createTheme({
-  cssVariables: true,
   palette: {
     mode: "light", /// default là light
     primary: {
-      main: "#556cd6"
+      main: "#556cd6",
     },
     secondary: {
-      main: "#19857b"
+      main: "#19857b",
     },
     error: {
-      main: red.A400
-    }
-  }
+      main: red.A400,
+    },
+  },
+  colorSchemes: { light: true, dark: true },
+  cssVariables: {
+    colorSchemeSelector: "class",
+  },
 });
 
 export default theme;
