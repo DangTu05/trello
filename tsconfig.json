@@ -1,12 +1,17 @@
 {
   "compilerOptions": {
-    "forceConsistentCasingInFileNames": true,
-    "strict": true
+    "forceConsistentCasingInFileNames": true, ///Khi được đặt là true, trình biên dịch sẽ kiểm tra tính nhất quán về viết hoa/viết thường trong tên tệp
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"]
+    } //Chỉ định đường dẫn ánh xạ được tính toán tương đối với tùy chọn baseUrl
   },
-  "include": ["src", "types"],
+  "include": ["src"], ///Trình biên dịch sẽ tìm kiếm và biên dịch tất cả các tệp .ts và .tsx trong các thư mục này.
   "files": [],
+  //Chỉ định đường dẫn ánh xạ được tính toán tương đối với tùy chọn baseUrl
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ] ///Khi sử dụng references, trình biên dịch sẽ biên dịch các phần của dự án theo thứ tự phụ thuộc. Ví dụ, nếu tsconfig.app.json phụ thuộc vào tsconfig.node.json, trình biên dịch sẽ biên dịch tsconfig.node.json trước
 }
