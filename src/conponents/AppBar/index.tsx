@@ -23,6 +23,7 @@ function AppBar() {
         justifyContent: "space-between",
         gap: 2,
         overflowX: "auto",
+        borderBottom: "2px solid  rgb(71, 157, 149)",
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>

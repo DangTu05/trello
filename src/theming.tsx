@@ -37,7 +37,7 @@ const theme = createTheme({
   },
   trello: {
     appBarHeight: "60px",
-    boardBarHeight: "40px",
+    boardBarHeight: "50px",
   },
 
   cssVariables: {
