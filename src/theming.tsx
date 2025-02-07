@@ -30,7 +30,7 @@ const theme = createTheme({
       main: red.A400,
     },
   },
-  // spacing: (factor: number) => `${0.25 * factor}rem`,
+  spacing: (factor: number) => `${6 * factor}px`,
   colorSchemes: {
     light: true,
     dark: true,
@@ -42,6 +42,56 @@ const theme = createTheme({
 
   cssVariables: {
     colorSchemeSelector: "class",
+  },
+  components: {
+    // Name of the component
+    MuiButton: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          textTransform: "none",
+        },
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          color: theme.palette.secondary.main,
+          fontSize: "0.875rem",
+        }),
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          color: theme.palette.secondary.main,
+          fontSize: "0.875rem",
+          "& label.Mui-focused": {
+            color: "white !important",
+          },
+        }),
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: ({ theme }) => {
+          return {
+            color: theme.palette.secondary.main,
+            fontSize: "0.875rem",
+            ".MuiOutlinedInput-notchedOutline": {
+              borderColor: `${theme.palette.secondary.main} !important`,
+            },
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              borderColor: theme.palette.secondary.main,
+            },
+            "& fieldset": {
+              borderWidth: "3px !important", /// Công dụng khi click vào thẻ input thì viền chỉ border 1px
+            },
+          };
+        },
+      },
+    },
   },
 });
 

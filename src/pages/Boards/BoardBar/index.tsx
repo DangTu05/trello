@@ -7,7 +7,7 @@ function Board() {
         alignItems: "center",
         height: (theme) => theme.trello.boardBarHeight,
         width: "100%",
-        backgroundColor: "primary.main",
+        backgroundColor: "secondary.light",
       }}
     >
       Board Bar
