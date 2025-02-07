@@ -1,6 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import { red } from "@mui/material/colors";
-
 declare module "@mui/material/styles" {
   interface Theme {
     trello: {
@@ -18,18 +16,18 @@ declare module "@mui/material/styles" {
 
 // A custom theme for this app
 const theme = createTheme({
-  palette: {
-    mode: "light", /// default là light
-    primary: {
-      main: "#556cd6",
-    },
-    secondary: {
-      main: "#19857b",
-    },
-    error: {
-      main: red.A400,
-    },
-  },
+  // palette: {
+  //   mode: "light", /// default là light
+  //   primary: {
+  //     main: "#556cd6",
+  //   },
+  //   secondary: {
+  //     main: "#19857b",
+  //   },
+  //   error: {
+  //     main: red.A400,
+  //   },
+  // },
   spacing: (factor: number) => `${6 * factor}px`,
   colorSchemes: {
     light: true,
@@ -68,13 +66,14 @@ const theme = createTheme({
         root: {
           // Some CSS
           textTransform: "none",
+          borderWidth: "0.5px",
         },
       },
     },
     MuiFormLabel: {
       styleOverrides: {
         root: ({ theme }) => ({
-          color: theme.palette.secondary.main,
+          // color: theme.palette.secondary.main,
           fontSize: "0.875rem",
         }),
       },
@@ -82,10 +81,10 @@ const theme = createTheme({
     MuiInputLabel: {
       styleOverrides: {
         root: ({ theme }) => ({
-          color: theme.palette.secondary.main,
+          // color: theme.palette.secondary.main,
           fontSize: "0.875rem",
           "& label.Mui-focused": {
-            color: "white !important",
+            // color: "white !important",
           },
         }),
       },
@@ -94,16 +93,22 @@ const theme = createTheme({
       styleOverrides: {
         root: ({ theme }) => {
           return {
-            color: theme.palette.secondary.main,
+            // color: theme.palette.secondary.main,
             fontSize: "0.875rem",
             ".MuiOutlinedInput-notchedOutline": {
-              borderColor: `${theme.palette.secondary.main} !important`,
+              // borderColor: `${theme.palette.secondary.main} !important`,
             },
             "&:hover .MuiOutlinedInput-notchedOutline": {
-              borderColor: theme.palette.secondary.main,
+              // borderColor: theme.palette.secondary.main,
             },
             "& fieldset": {
-              borderWidth: "3px !important", /// Công dụng khi click vào thẻ input thì viền chỉ border 1px
+              borderWidth: "0.5px !important", /// Công dụng khi click vào thẻ input thì viền chỉ border 0.5px
+            },
+            "&:hover fieldset": {
+              borderWidth: "1.5px !important",
+            },
+            "& .Mui-focused fieldset": {
+              borderWidth: "1.5px !important",
             },
           };
         },

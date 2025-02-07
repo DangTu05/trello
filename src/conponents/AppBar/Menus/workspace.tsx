@@ -31,7 +31,7 @@ export default function Workspaces() {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
         endIcon={<ExpandMoreIcon />}
-        color="secondary"
+        sx={{ color: "white" }}
       >
         Workspaces
       </Button>

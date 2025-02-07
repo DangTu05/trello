@@ -6,9 +6,11 @@ export default function Avatars() {
   return (
     <AvatarGroup
       sx={{
+        gap: 2,
         "& .MuiAvatar-root": {
           width: 32,
           height: 32,
+          border: "none",
         },
       }}
       max={4}
