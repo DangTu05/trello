@@ -7,13 +7,13 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import Avatars from "./avatars";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 const MENU_STYLE = {
-  color: "secondary.light",
+  color: "white",
   padding: "5px",
   border: "none",
-  backgroundColor: "#fff",
+  backgroundColor: "transparent",
   borderRadius: "5px",
   "& .MuiSvgIcon-root": {
-    color: "secondary.light",
+    color: "white",
   },
 };
 function Board() {
@@ -27,6 +27,10 @@ function Board() {
         justifyContent: "space-between",
         gap: 2,
         overflowX: "auto",
+        bgcolor: (theme) => {
+          return theme.palette.mode === "dark" ? "#34495e" : "#3498db";
+        },
+        borderBottom: "1px solid silver",
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 2, px: 2 }}>
@@ -68,9 +72,9 @@ function Board() {
       </Box>
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
         <Button
-          color="secondary"
-          startIcon={<PersonAddIcon />}
           variant="outlined"
+          sx={{ color: "white", borderColor: "white" }}
+          startIcon={<PersonAddIcon />}
         >
           Invite
         </Button>
