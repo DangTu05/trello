@@ -44,6 +44,23 @@ const theme = createTheme({
     colorSchemeSelector: "class",
   },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          "*::-webkit-scrollbar": {
+            width: "8px",
+            height: "8px",
+          },
+          "*::-webkit-scrollbar-thumb": {
+            backgroundColor: "silver",
+            borderRadius: 8,
+          },
+          "*::-webkit-scrollbar-thumb:hover": {
+            backgroundColor: "#556cd6",
+          },
+        },
+      },
+    },
     // Name of the component
     MuiButton: {
       styleOverrides: {
