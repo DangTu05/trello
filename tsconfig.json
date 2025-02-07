@@ -7,7 +7,7 @@
       "~/*": ["./src/*"]
     } //Chỉ định đường dẫn ánh xạ được tính toán tương đối với tùy chọn baseUrl
   },
-  "include": ["src"], ///Trình biên dịch sẽ tìm kiếm và biên dịch tất cả các tệp .ts và .tsx trong các thư mục này.
+  "include": ["src", "src/types.d.ts"], ///Trình biên dịch sẽ tìm kiếm và biên dịch tất cả các tệp .ts và .tsx trong các thư mục này.
   "files": [],
   //Chỉ định đường dẫn ánh xạ được tính toán tương đối với tùy chọn baseUrl
   "references": [
