@@ -4,16 +4,20 @@ declare module "@mui/material/styles" {
     trello: {
       appBarHeight: string;
       boardBarHeight: string;
+      boardBarContentHeight: string;
     };
   }
   interface ThemeOptions {
     trello?: {
       appBarHeight?: string;
       boardBarHeight?: string;
+      boardBarContentHeight?: string;
     };
   }
 }
-
+const AppBarHeight = "60px";
+const BoardBarHeight = "50px";
+const boardBarContentHeight = `calc( 100vh - ${AppBarHeight} - ${BoardBarHeight})`;
 // A custom theme for this app
 const theme = createTheme({
   // palette: {
@@ -34,8 +38,9 @@ const theme = createTheme({
     dark: true,
   },
   trello: {
-    appBarHeight: "60px",
-    boardBarHeight: "50px",
+    appBarHeight: AppBarHeight,
+    boardBarHeight: BoardBarHeight,
+    boardBarContentHeight: boardBarContentHeight,
   },
 
   cssVariables: {
@@ -54,7 +59,7 @@ const theme = createTheme({
             borderRadius: 8,
           },
           "*::-webkit-scrollbar-thumb:hover": {
-            backgroundColor: "#556cd6",
+            backgroundColor: "grey",
           },
         },
       },
@@ -85,6 +90,15 @@ const theme = createTheme({
           fontSize: "0.875rem",
           "& label.Mui-focused": {
             // color: "white !important",
+          },
+        }),
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          "&.MuiTypography-body1": {
+            fontSize: "0.875rem",
           },
         }),
       },
