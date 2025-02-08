@@ -78,6 +78,7 @@ function AppBar() {
           id="outlined-search"
           label="Search..."
           type="text"
+          placeholder="Search..."
           size="small"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}

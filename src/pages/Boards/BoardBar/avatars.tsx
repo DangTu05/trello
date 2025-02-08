@@ -11,6 +11,9 @@ export default function Avatars() {
           width: 32,
           height: 32,
           border: "none",
+          "&:first-of-type": {
+            bgcolor: "#a4b0be",
+          },
         },
       }}
       max={4}
