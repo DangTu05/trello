@@ -35,3 +35,4 @@ noFallthroughCasesInSwitch: Báo lỗi khi có trường hợp switch không có
 noUncheckedSideEffectImports: Báo lỗi khi có nhập khẩu có tác dụng phụ không được kiểm tra.
 composite: Định nghĩa rằng dự án này là một dự án composite.
 emitDeclarationOnly: Chỉ tạo ra các tệp khai báo mà không phát sinh các tệp JavaScript.*/
+Hook như useState chỉ được phép gọi bên trong React component (bắt đầu bằng chữ in hoa) hoặc custom hook (bắt đầu bằng use).

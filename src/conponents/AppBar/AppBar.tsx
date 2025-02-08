@@ -65,10 +65,7 @@ function AppBar() {
           <Recent />
           <Starred />
           <Templates />
-          <Button
-            startIcon={<AddToPhotosIcon />}
-            sx={{ color: "white"}}
-          >
+          <Button startIcon={<AddToPhotosIcon />} sx={{ color: "white" }}>
             Create
           </Button>
         </Box>

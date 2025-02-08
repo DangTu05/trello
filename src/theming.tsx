@@ -5,6 +5,8 @@ declare module "@mui/material/styles" {
       appBarHeight: string;
       boardBarHeight: string;
       boardBarContentHeight: string;
+      headerHeight: string;
+      footerHeight: string;
     };
   }
   interface ThemeOptions {
@@ -12,9 +14,13 @@ declare module "@mui/material/styles" {
       appBarHeight?: string;
       boardBarHeight?: string;
       boardBarContentHeight?: string;
+      headerHeight?: string;
+      footerHeight?: string;
     };
   }
 }
+const Header_Height = "50px";
+const Footer_Height = "50px";
 const AppBarHeight = "60px";
 const BoardBarHeight = "50px";
 const boardBarContentHeight = `calc( 100vh - ${AppBarHeight} - ${BoardBarHeight})`;
@@ -41,6 +47,8 @@ const theme = createTheme({
     appBarHeight: AppBarHeight,
     boardBarHeight: BoardBarHeight,
     boardBarContentHeight: boardBarContentHeight,
+    headerHeight: Header_Height,
+    footerHeight: Footer_Height,
   },
 
   cssVariables: {
