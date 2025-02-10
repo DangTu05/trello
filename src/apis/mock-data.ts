@@ -32,7 +32,7 @@ export interface BoardType {
   columnOrderIds: string[];
   columns: ColumnType[];
 }
-export const mockData:{board:BoardType} = {
+export const mockData: { board: BoardType } = {
   board: {
     _id: "board-id-01",
     title: "TrungQuanDev MERN Stack Board",

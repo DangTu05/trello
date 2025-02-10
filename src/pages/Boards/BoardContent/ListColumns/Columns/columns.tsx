@@ -19,6 +19,8 @@ import DragHandleSharpIcon from "@mui/icons-material/DragHandleSharp";
 import ListCards from "./ListCards/ListCards";
 import { ColumnType, CardType } from "../../../../../apis/mock-data";
 import mapOrder from "../../../../../utils/sort";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 // Hook như useState chỉ được phép gọi bên trong React component (bắt đầu bằng chữ in hoa) hoặc custom hook (bắt đầu bằng use).
 function Columns({ column }: { column?: ColumnType }) {
   const orderedCards = mapOrder<CardType>(
@@ -34,8 +36,21 @@ function Columns({ column }: { column?: ColumnType }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: column?._id || "", data: { ...column } });
+
+  const styleColumn = {
+    touchAction: "none", /// Dành cho sersor default dạng poitersensor
+    /// Nếu sử dụng Css.Transform như đọc sẽ lỗi kiểu stretch
+    transform: CSS.Translate.toString(transform),
+    transition,
+  };
   return (
     <Box
+      ref={setNodeRef}
+      style={styleColumn}
+      {...attributes}
+      {...listeners}
       sx={{
         maxWidth: "250px",
         minWidth: "250px",

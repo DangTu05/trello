@@ -17,19 +17,17 @@ import { CardType, ColumnType } from "../apis/mock-data";
 const mapOrder = <T extends CardType | ColumnType>(
   originalArray?: T[],
   orderArray?: string[],
-  key?: string
+  key?: keyof T
 ): T[] => {
   if (!originalArray || !orderArray || !key) return [];
 
   const clonedArray = [...originalArray];
-  const orderedArray = clonedArray.sort(
-    (a: CardType | ColumnType, b: CardType | ColumnType) => {
-      return (
-        orderArray.indexOf(a[key as keyof (CardType | ColumnType)] as string) -
-        orderArray.indexOf(b[key as keyof (CardType | ColumnType)] as string)
-      );
-    }
-  );
+  const orderedArray = clonedArray.sort((a: T, b: T) => {
+    return (
+      orderArray.indexOf(a[key] as string) -
+      orderArray.indexOf(b[key] as string)
+    );
+  });
 
   return orderedArray;
 };
