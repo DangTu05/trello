@@ -1,6 +1,7 @@
 import Card from "./Card/card";
 import { Box } from "@mui/material";
-function ListCards() {
+import { CardType } from "../../../../../../apis/mock-data";
+function ListCards({ cards }: { cards?: CardType[] }) {
   return (
     <Box
       sx={{
@@ -17,8 +18,9 @@ function ListCards() {
           } - ${theme.trello.footerHeight})`,
       }}
     >
-      <Card />
-      <Card temporaryHideMedia />
+      {cards?.map((card: CardType) => (
+        <Card key={card._id} card={card} />
+      ))}
     </Box>
   );
 }

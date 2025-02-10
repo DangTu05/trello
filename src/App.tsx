@@ -2,6 +2,7 @@ import { Container } from "@mui/material";
 import AppBar from "./conponents/AppBar/AppBar";
 import BoardBar from "./pages/Boards/BoardBar/BoardBar";
 import BoardContent from "./pages/Boards/BoardContent/BoardContent";
+import { mockData } from "./apis/mock-data";
 function App() {
   return (
     <Container
@@ -11,8 +12,8 @@ function App() {
       sx={{ height: "100vh" }}
     >
       <AppBar />
-      <BoardBar />
-      <BoardContent />
+      <BoardBar boards={mockData?.board} />
+      <BoardContent boards={mockData?.board} />
     </Container>
   );
 }

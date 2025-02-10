@@ -2,7 +2,8 @@ import { Box } from "@mui/material";
 import Columns from "./Columns/columns";
 import Button from "@mui/material/Button";
 import PostAddIcon from "@mui/icons-material/PostAdd";
-function ListColumns() {
+import { ColumnType } from "../../../../apis/mock-data";
+function ListColumns({ columns }: { columns: ColumnType[] | undefined }) {
   return (
     <Box
       sx={{
@@ -18,7 +19,10 @@ function ListColumns() {
       }}
     >
       {/* column */}
-      <Columns />
+      {columns?.map((column: ColumnType) => (
+        <Columns key={column._id} column={column} />
+      ))}
+
       {/* Box add new column  */}
       <Box
         sx={{
