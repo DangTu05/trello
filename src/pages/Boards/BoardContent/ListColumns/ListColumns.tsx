@@ -3,51 +3,58 @@ import Columns from "./Columns/columns";
 import Button from "@mui/material/Button";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import { ColumnType } from "../../../../apis/mock-data";
+import { SortableContext } from "@dnd-kit/sortable";
+import { horizontalListSortingStrategy } from "@dnd-kit/sortable";
 function ListColumns({ columns }: { columns: ColumnType[] | undefined }) {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        overflowX: "auto",
-        overflowY: "hidden",
-        width: "100%",
-        height: "100%",
-        bgcolor: "inherit",
-        "&::-webkit-scrollbar-track": {
-          m: 2,
-        },
-      }}
+    <SortableContext
+      items={columns?.map((column: ColumnType) => column._id) || []}
+      strategy={horizontalListSortingStrategy}
     >
-      {/* column */}
-      {columns?.map((column: ColumnType) => (
-        <Columns key={column._id} column={column} />
-      ))}
-
-      {/* Box add new column  */}
       <Box
         sx={{
-          maxWidth: "200px",
-          minWidth: "200px",
-          mx: 2,
-          height: "fit-content",
-          bgcolor: "#ffffff3d",
-          borderRadius: "6px",
+          display: "flex",
+          overflowX: "auto",
+          overflowY: "hidden",
+          width: "100%",
+          height: "100%",
+          bgcolor: "inherit",
+          "&::-webkit-scrollbar-track": {
+            m: 2,
+          },
         }}
       >
-        <Button
+        {/* column */}
+        {columns?.map((column: ColumnType) => (
+          <Columns key={column._id} column={column} />
+        ))}
+
+        {/* Box add new column  */}
+        <Box
           sx={{
-            color: "white",
-            py: 1.5,
-            justifyContent: "flex-start",
-            width: "100%",
-            pl: 2.5,
+            maxWidth: "200px",
+            minWidth: "200px",
+            mx: 2,
+            height: "fit-content",
+            bgcolor: "#ffffff3d",
+            borderRadius: "6px",
           }}
-          startIcon={<PostAddIcon />}
         >
-          Add new card
-        </Button>
+          <Button
+            sx={{
+              color: "white",
+              py: 1.5,
+              justifyContent: "flex-start",
+              width: "100%",
+              pl: 2.5,
+            }}
+            startIcon={<PostAddIcon />}
+          >
+            Add new card
+          </Button>
+        </Box>
       </Box>
-    </Box>
+    </SortableContext>
   );
 }
 
