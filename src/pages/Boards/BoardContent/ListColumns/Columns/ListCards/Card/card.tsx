@@ -7,34 +7,12 @@ import AttachmentIcon from "@mui/icons-material/Attachment";
 import CommentIcon from "@mui/icons-material/Comment";
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
-
-function Card({ temporaryHideMedia }: { temporaryHideMedia?: boolean }) {
-  if (temporaryHideMedia) {
-    return (
-      <MuiCard
-        sx={{
-          cursor: "pointer",
-          boxShadow: "0 1px 1px rgba(0, 0, 0, 0.2)",
-          overflow: "unset",
-        }}
-      >
-        <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
-          <Typography gutterBottom>Lizard</Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small" startIcon={<GroupIcon />}>
-            20
-          </Button>
-          <Button startIcon={<CommentIcon />} size="small">
-            15
-          </Button>
-          <Button startIcon={<AttachmentIcon />} size="small">
-            10
-          </Button>
-        </CardActions>
-      </MuiCard>
-    );
-  }
+import { CardType } from "../../../../../../../apis/mock-data";
+function Card({ card }: { card: CardType }) {
+  const shouldShowCardAction: boolean =
+    !!card?.memberIds?.length ||
+    !!card?.comments?.length ||
+    !!card?.attachments?.length;
   return (
     <MuiCard
       sx={{
@@ -43,25 +21,32 @@ function Card({ temporaryHideMedia }: { temporaryHideMedia?: boolean }) {
         overflow: "unset",
       }}
     >
-      <CardMedia
-        sx={{ height: 140, cursor: "pointer" }}
-        image="https://d1hjkbq40fs2x4.cloudfront.net/2017-08-21/files/landscape-photography_1645.jpg"
-        title="green iguana"
-      />
+      {card?.cover && (
+        <CardMedia sx={{ height: 140, cursor: "pointer" }} image={card.cover} />
+      )}
+
       <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
-        <Typography gutterBottom>Lizard</Typography>
+        <Typography gutterBottom>{card?.title}</Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small" startIcon={<GroupIcon />}>
-          20
-        </Button>
-        <Button startIcon={<CommentIcon />} size="small">
-          15
-        </Button>
-        <Button startIcon={<AttachmentIcon />} size="small">
-          10
-        </Button>
-      </CardActions>
+      {shouldShowCardAction && (
+        <CardActions>
+          {!!card?.memberIds?.length && (
+            <Button size="small" startIcon={<GroupIcon />}>
+              {card.memberIds.length}
+            </Button>
+          )}
+          {!!card?.comments?.length && (
+            <Button size="small" startIcon={<CommentIcon />}>
+              {card.comments.length}
+            </Button>
+          )}
+          {!!card?.attachments?.length && (
+            <Button size="small" startIcon={<AttachmentIcon />}>
+              {card.attachments.length}
+            </Button>
+          )}
+        </CardActions>
+      )}
     </MuiCard>
   );
 }

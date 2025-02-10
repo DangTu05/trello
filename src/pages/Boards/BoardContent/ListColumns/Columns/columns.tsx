@@ -17,8 +17,15 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Button from "@mui/material/Button";
 import DragHandleSharpIcon from "@mui/icons-material/DragHandleSharp";
 import ListCards from "./ListCards/ListCards";
+import { ColumnType, CardType } from "../../../../../apis/mock-data";
+import mapOrder from "../../../../../utils/sort";
 // Hook như useState chỉ được phép gọi bên trong React component (bắt đầu bằng chữ in hoa) hoặc custom hook (bắt đầu bằng use).
-function Columns() {
+function Columns({ column }: { column?: ColumnType }) {
+  const orderedCards = mapOrder<CardType>(
+    column?.cards,
+    column?.cardOrderIds,
+    "_id"
+  );
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -127,7 +134,7 @@ function Columns() {
         </Box>
       </Box>
       {/* content  */}
-      <ListCards />
+      <ListCards cards={orderedCards} />
       {/* footer  */}
       <Box
         sx={{

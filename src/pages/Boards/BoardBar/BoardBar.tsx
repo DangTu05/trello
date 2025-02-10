@@ -5,7 +5,9 @@ import AddToDriveIcon from "@mui/icons-material/AddToDrive";
 import AutoFixNormalIcon from "@mui/icons-material/AutoFixNormal";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import Avatars from "./avatars";
+import { capitalizeFirstLetter } from "../../../utils/formasters";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import { BoardType } from "../../../apis/mock-data";
 const MENU_STYLE = {
   color: "white",
   padding: "5px",
@@ -16,7 +18,8 @@ const MENU_STYLE = {
     color: "white",
   },
 };
-function Board() {
+
+function Board({ boards }: { boards?: BoardType }) {
   return (
     <Box
       sx={{
@@ -37,14 +40,14 @@ function Board() {
         <Chip
           clickable
           icon={<DashboardIcon />}
-          label="Đặng Quang Tú"
+          label={boards?.title}
           variant="outlined"
           sx={MENU_STYLE}
         />
         <Chip
           clickable
           icon={<VpnLockIcon />}
-          label="Public/Private Workspaces"
+          label={capitalizeFirstLetter(boards?.type)}
           variant="outlined"
           sx={MENU_STYLE}
         />
