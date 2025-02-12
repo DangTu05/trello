@@ -8,13 +8,35 @@ import CommentIcon from "@mui/icons-material/Comment";
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { CardType } from "../../../../../../../apis/mock-data";
+import { CSS } from "@dnd-kit/utilities";
+import { useSortable } from "@dnd-kit/sortable";
 function Card({ card }: { card: CardType }) {
   const shouldShowCardAction: boolean =
     !!card?.memberIds?.length ||
     !!card?.comments?.length ||
     !!card?.attachments?.length;
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: card?._id || "", data: { ...card } });
+
+  const styleCard = {
+    touchAction: "none", /// Dành cho sersor default dạng poitersensor
+    /// Nếu sử dụng Css.Transform như đọc sẽ lỗi kiểu stretch
+    transform: CSS.Translate.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : undefined,
+  };
   return (
     <MuiCard
+      ref={setNodeRef}
+      {...attributes}
+      {...listeners}
+      style={styleCard}
       sx={{
         cursor: "pointer",
         boxShadow: "0 1px 1px rgba(0, 0, 0, 0.2)",
