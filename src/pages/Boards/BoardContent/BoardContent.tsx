@@ -1,8 +1,18 @@
 import { Box } from "@mui/material";
 import ListColumns from "./ListColumns/ListColumns";
-import { ColumnType, BoardType } from "../../../apis/mock-data";
+import { ColumnType, BoardType, CardType } from "../../../apis/mock-data";
 import mapOrder from "../../../utils/sort";
 import {
+  DragOverlay,
+  DropAnimation,
+  defaultDropAnimationSideEffects,
+} from "@dnd-kit/core";
+import { UniqueIdentifier } from "@dnd-kit/core";
+import Card from "./ListColumns/Columns/ListCards/Card/card";
+import Columns from "./ListColumns/Columns/columns";
+import { CSS } from "@dnd-kit/utilities";
+import {
+  DragStartEvent,
   DndContext,
   DragEndEvent,
   useSensor,
@@ -13,7 +23,10 @@ import {
 } from "@dnd-kit/core";
 import { useEffect, useState } from "react";
 import { arrayMove } from "@dnd-kit/sortable";
-
+const TYPE = {
+  COLUMN: "column",
+  CARD: "card",
+};
 function BoardContent({ boards }: { boards?: BoardType }) {
   // Yêu cầu chuột di chuyển 10 pixel trước khi kích hoạt
   // const poiterSensor = useSensor(PointerSensor, {
@@ -21,6 +34,34 @@ function BoardContent({ boards }: { boards?: BoardType }) {
   //     distance: 10,
   //   },
   // });
+  const dropAnimation: DropAnimation = {
+    keyframes({ transform }) {
+      return [
+        { transform: CSS.Transform.toString(transform.initial) },
+        {
+          transform: CSS.Transform.toString({
+            ...transform.final,
+            scaleX: 0.94,
+            scaleY: 0.94,
+          }),
+        },
+      ];
+    },
+    sideEffects: defaultDropAnimationSideEffects({
+      styles: {
+        active: {
+          opacity: "0.5",
+        },
+      },
+    }),
+  };
+  const [activeDragItemData, setActiveDragItemData] = useState<
+    CardType | null | ColumnType
+  >(null);
+  const [activeDragItemType, setActiveDragItemType] =
+    useState<UniqueIdentifier | null>(null);
+  const [activeDragItemId, setactiveDragItemId] =
+    useState<UniqueIdentifier | null>(null);
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
       distance: 10,
@@ -41,6 +82,15 @@ function BoardContent({ boards }: { boards?: BoardType }) {
       mapOrder<ColumnType>(boards?.columns, boards?.columnOrderIds, "_id")
     );
   }, [boards]);
+  const handleDragStart = (e: DragStartEvent) => {
+    setactiveDragItemId(e?.active?.id as string);
+    setActiveDragItemType(
+      e?.active?.data?.current?.columnId ? TYPE.CARD : TYPE.COLUMN
+    );
+    const data: CardType | ColumnType | null | undefined = e?.active?.data
+      ?.current as CardType | ColumnType | null;
+    setActiveDragItemData(data!);
+  };
   const handleDragEnd = (e: DragEndEvent) => {
     const { active, over } = e;
     if (!over) return; // vị trí không hợp lệ dừng chuogw trình
@@ -57,7 +107,11 @@ function BoardContent({ boards }: { boards?: BoardType }) {
     }
   };
   return (
-    <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
+    <DndContext
+      onDragEnd={handleDragEnd}
+      onDragStart={handleDragStart}
+      sensors={sensors}
+    >
       <Box
         sx={{
           height: (theme) => theme.trello.boardBarContentHeight,
@@ -68,6 +122,15 @@ function BoardContent({ boards }: { boards?: BoardType }) {
         }}
       >
         <ListColumns columns={orderedColumn} />
+        <DragOverlay dropAnimation={dropAnimation}>
+          {!activeDragItemType && null}
+          {activeDragItemType === TYPE.COLUMN && (
+            <Columns column={activeDragItemData as ColumnType} />
+          )}
+          {activeDragItemType === TYPE.CARD && (
+            <Card card={activeDragItemData as CardType} />
+          )}
+        </DragOverlay>
       </Box>
     </DndContext>
   );
