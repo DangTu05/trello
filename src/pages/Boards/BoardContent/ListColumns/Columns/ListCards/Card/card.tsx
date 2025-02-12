@@ -30,6 +30,7 @@ function Card({ card }: { card: CardType }) {
     transform: CSS.Translate.toString(transform),
     transition,
     opacity: isDragging ? 0.5 : undefined,
+    border: isDragging ? "0.5px solid #2196f3" : "none"
   };
   return (
     <MuiCard
